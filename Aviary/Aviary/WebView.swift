@@ -186,7 +186,8 @@ struct WebView: UIViewRepresentable {
                url.scheme == "blob" || navigationAction.navigationType == .linkActivated,
                let host = url.host,
                let serverHost = URL(string: parent.serverURL)?.host,
-               host != serverHost {
+               host != serverHost,
+               host != webView.url?.host {
                 UIApplication.shared.open(url)
                 decisionHandler(.cancel)
                 return
